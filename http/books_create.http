@@ -1,0 +1,51 @@
+POST http://localhost:8080/books?title=A1&author=B1
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/books?title=A2&author=B2
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/books?title=A3&author=B3
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/books?title=A4&author=B4
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/books?title=A5&author=B5
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/books?title=A6&author=B6
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/books?title=A7&author=B7
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/books?title=A8&author=B8
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/books?title=A9&author=B9
+Accept: */*
+Cache-Control: no-cache

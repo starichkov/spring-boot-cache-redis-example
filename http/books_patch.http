@@ -1,0 +1,51 @@
+PATCH http://localhost:8080/books/1?title=A11
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+PATCH http://localhost:8080/books/2?title=A21
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+PATCH http://localhost:8080/books/3?title=A31
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+PATCH http://localhost:8080/books/4?title=A41
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+PATCH http://localhost:8080/books/5?title=A51
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+PATCH http://localhost:8080/books/6?title=A61
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+PATCH http://localhost:8080/books/7?title=A71
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+PATCH http://localhost:8080/books/8?title=A81
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+PATCH http://localhost:8080/books/9?title=A91
+Accept: */*
+Cache-Control: no-cache
