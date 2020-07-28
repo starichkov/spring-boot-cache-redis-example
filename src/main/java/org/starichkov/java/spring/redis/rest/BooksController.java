@@ -32,11 +32,17 @@ public class BooksController {
         return service.get(id);
     }
 
-    @PostMapping(params = {"title", "author"})
-    public Book createBook(@RequestParam("title") String title, @RequestParam("author") String author) {
+    @GetMapping(path = "/isbn", params = {"isbn"})
+    public Book getBook(@RequestParam("isbn") String isbn) {
+        return service.getByISBN(isbn);
+    }
+
+    @PostMapping(params = {"title", "author", "isbn"})
+    public Book createBook(@RequestParam("title") String title, @RequestParam("author") String author, @RequestParam("isbn") String isbn) {
         Book book = new Book();
         book.setTitle(title);
         book.setAuthor(author);
+        book.setIsbn(isbn);
         return service.create(book);
     }
 
@@ -50,6 +56,11 @@ public class BooksController {
     @DeleteMapping("/{id}")
     public void deleteBook(@PathVariable("id") Long id) {
         service.deleteById(id);
+    }
+
+    @DeleteMapping(path = "/isbn", params = {"isbn"})
+    public void deleteBookByIsbn(@RequestParam("isbn") String isbn) {
+        service.deleteByIsbn(isbn);
     }
 
     @DeleteMapping("/all")

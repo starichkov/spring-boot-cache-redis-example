@@ -1,51 +1,51 @@
-POST http://localhost:8080/books?title=A1&author=B1
+POST http://localhost:8080/books?title=A1&author=B1&isbn=A1-0123456789
 Accept: */*
 Cache-Control: no-cache
 
 ###
 
-POST http://localhost:8080/books?title=A2&author=B2
+POST http://localhost:8080/books?title=A2&author=B2&isbn=A2-0123456789
 Accept: */*
 Cache-Control: no-cache
 
 ###
 
-POST http://localhost:8080/books?title=A3&author=B3
+POST http://localhost:8080/books?title=A3&author=B3&isbn=A3-0123456789
 Accept: */*
 Cache-Control: no-cache
 
 ###
 
-POST http://localhost:8080/books?title=A4&author=B4
+POST http://localhost:8080/books?title=A4&author=B4&isbn=A4-0123456789
 Accept: */*
 Cache-Control: no-cache
 
 ###
 
-POST http://localhost:8080/books?title=A5&author=B5
+POST http://localhost:8080/books?title=A5&author=B5&isbn=A5-0123456789
 Accept: */*
 Cache-Control: no-cache
 
 ###
 
-POST http://localhost:8080/books?title=A6&author=B6
+POST http://localhost:8080/books?title=A6&author=B6&isbn=A6-0123456789
 Accept: */*
 Cache-Control: no-cache
 
 ###
 
-POST http://localhost:8080/books?title=A7&author=B7
+POST http://localhost:8080/books?title=A7&author=B7&isbn=A7-0123456789
 Accept: */*
 Cache-Control: no-cache
 
 ###
 
-POST http://localhost:8080/books?title=A8&author=B8
+POST http://localhost:8080/books?title=A8&author=B8&isbn=A8-0123456789
 Accept: */*
 Cache-Control: no-cache
 
 ###
 
-POST http://localhost:8080/books?title=A9&author=B9
+POST http://localhost:8080/books?title=A9&author=B9&isbn=A9-0123456789
 Accept: */*
 Cache-Control: no-cache

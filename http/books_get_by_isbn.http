@@ -1,0 +1,51 @@
+GET http://localhost:8080/books/isbn?isbn=A1-0123456789
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/books/isbn?isbn=A2-0123456789
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/books/isbn?isbn=A3-0123456789
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/books/isbn?isbn=A4-0123456789
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/books/isbn?isbn=A5-0123456789
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/books/isbn?isbn=A6-0123456789
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/books/isbn?isbn=A7-0123456789
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/books/isbn?isbn=A8-0123456789
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/books/isbn?isbn=A9-0123456789
+Accept: */*
+Cache-Control: no-cache
