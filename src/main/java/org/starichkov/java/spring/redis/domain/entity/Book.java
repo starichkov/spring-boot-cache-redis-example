@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 /**
  * @author Vadim Starichkov
@@ -19,7 +18,7 @@ import java.io.Serializable;
 @Table(name = "books", schema = "book_store")
 @Getter
 @Setter
-public class Book implements Serializable {
+public class Book {
 
     public Book() {
     }
