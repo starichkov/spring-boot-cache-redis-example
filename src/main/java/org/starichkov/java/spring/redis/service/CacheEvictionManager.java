@@ -18,12 +18,18 @@ public class CacheEvictionManager {
             @CacheEvict(cacheNames = Constants.CACHE_BOOKS_ISBN, key = "#isbn")
     })
     public void evict(Long id, String isbn) {
-        log.info("Cache: evicting by id {} and isbn {}", id, isbn);
+        log.info("Cache: Book - evicting by id {} and isbn {}", id, isbn);
+    }
+
+    @CacheEvict(cacheNames = Constants.CACHE_MAGAZINES_ID, key = "#id", cacheManager = Constants.CACHE_MGR_MAGAZINES)
+    public void evictMagazine(Long id) {
+        log.info("Cache: Magazine - evicting by id {}", id);
     }
 
     @Caching(evict = {
             @CacheEvict(cacheNames = Constants.CACHE_BOOKS_ID, allEntries = true),
-            @CacheEvict(cacheNames = Constants.CACHE_BOOKS_ISBN, allEntries = true)
+            @CacheEvict(cacheNames = Constants.CACHE_BOOKS_ISBN, allEntries = true),
+            @CacheEvict(cacheNames = Constants.CACHE_MAGAZINES_ID, allEntries = true, cacheManager = Constants.CACHE_MGR_MAGAZINES)
     })
     public void evictAll() {
         log.info("Cache: evicting all entries");

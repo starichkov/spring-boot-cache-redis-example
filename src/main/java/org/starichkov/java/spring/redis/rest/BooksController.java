@@ -62,9 +62,4 @@ public class BooksController {
     public void deleteBookByIsbn(@RequestParam("isbn") String isbn) {
         service.deleteByIsbn(isbn);
     }
-
-    @DeleteMapping("/all")
-    public void evictAll() {
-        service.evictAll();
-    }
 }

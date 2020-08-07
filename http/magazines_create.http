@@ -1,0 +1,9 @@
+POST http://localhost:8080/magazines?title=M1&issue=1
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/magazines?title=M2&issue=2
+Accept: */*
+Cache-Control: no-cache
