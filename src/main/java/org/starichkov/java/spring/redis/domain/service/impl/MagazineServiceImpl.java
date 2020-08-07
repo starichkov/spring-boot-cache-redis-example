@@ -28,7 +28,7 @@ public class MagazineServiceImpl implements MagazineService {
         this.cacheEvictionManager = cacheEvictionManager;
     }
 
-    @Cacheable(cacheNames = Constants.CACHE_MAGAZINES_ID, key = "#id", unless = "#result == null", cacheManager = Constants.CACHE_MGR_MAGAZINES)
+    @Cacheable(cacheNames = Constants.CACHE_MAGAZINES_ID, key = "#id", unless = "#result == null")
     @Override
     public Magazine get(Long id) {
         return repository.getOne(id);
@@ -39,7 +39,7 @@ public class MagazineServiceImpl implements MagazineService {
         return repository.save(book);
     }
 
-    @CachePut(cacheNames = Constants.CACHE_MAGAZINES_ID, key = "#book.id", unless = "#result == null", cacheManager = Constants.CACHE_MGR_MAGAZINES)
+    @CachePut(cacheNames = Constants.CACHE_MAGAZINES_ID, key = "#book.id", unless = "#result == null")
     @Override
     public Magazine update(Magazine book) {
         return repository.save(book);

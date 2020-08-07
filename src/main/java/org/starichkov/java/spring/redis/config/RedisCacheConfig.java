@@ -1,15 +1,17 @@
 package org.starichkov.java.spring.redis.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.CacheOperationInvocationContext;
 import org.springframework.cache.interceptor.CacheResolver;
+import org.springframework.cache.support.NoOpCache;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -20,8 +22,8 @@ import org.starichkov.java.spring.redis.domain.entity.Magazine;
 import org.starichkov.java.spring.redis.service.Constants;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 
 /**
@@ -30,7 +32,7 @@ import java.util.Set;
  */
 @Configuration
 @EnableCaching
-public class RedisCacheConfig {
+public class RedisCacheConfig extends CachingConfigurerSupport {
 
     private final ObjectMapper objectMapper;
     private final RedisConnectionFactory redisConnectionFactory;
@@ -41,9 +43,13 @@ public class RedisCacheConfig {
         this.redisConnectionFactory = redisConnectionFactory;
     }
 
-    @Bean(Constants.CACHE_MGR_BOOKS)
-    @Primary
-    public CacheManager redisCacheManager() {
+    @Override
+    @Bean("cacheResolver")
+    public CacheResolver cacheResolver() {
+        return new MultipleCacheResolver(cacheManagerBooks(), cacheManagerMagazines());
+    }
+
+    private CacheManager cacheManagerBooks() {
         Jackson2JsonRedisSerializer<Book> jacksonSerializer = new Jackson2JsonRedisSerializer<>(Book.class);
         jacksonSerializer.setObjectMapper(objectMapper);
 
@@ -61,8 +67,7 @@ public class RedisCacheConfig {
                 .build();
     }
 
-    @Bean(Constants.CACHE_MGR_MAGAZINES)
-    public CacheManager redisCacheManagerMagazines() {
+    private CacheManager cacheManagerMagazines() {
         Jackson2JsonRedisSerializer<Magazine> jacksonSerializer = new Jackson2JsonRedisSerializer<>(Magazine.class);
         jacksonSerializer.setObjectMapper(objectMapper);
 
@@ -80,27 +85,37 @@ public class RedisCacheConfig {
                 .build();
     }
 
-    /*
-    @Bean
-    public CacheResolver cacheResolver() {
-        return new MultipleCacheResolver(redisCacheManager(), redisCacheManagerMagazines());
-    }
-
+    @Slf4j
     private static class MultipleCacheResolver implements CacheResolver {
 
         private final CacheManager booksManager;
         private final CacheManager magazinesManager;
+        private final Collection<Cache> noOpCache;
 
         public MultipleCacheResolver(CacheManager booksManager, CacheManager magazinesManager) {
             this.booksManager = booksManager;
             this.magazinesManager = magazinesManager;
+            this.noOpCache = Collections.singletonList(new NoOpCache("no_op_cache"));
         }
 
         @Override
         public Collection<? extends Cache> resolveCaches(CacheOperationInvocationContext<?> context) {
-            Collection<Cache> caches = new ArrayList<>();
-            return caches;
+            Set<String> cacheNames = context.getOperation().getCacheNames();
+            if (cacheNames.isEmpty()) {
+                log.error("No cache names specified.");
+                return noOpCache;
+            }
+
+            if (cacheNames.contains(Constants.CACHE_MAGAZINES_ID)) {
+                return Collections.singletonList(magazinesManager.getCache(Constants.CACHE_MAGAZINES_ID));
+            } else if (cacheNames.contains(Constants.CACHE_BOOKS_ID)) {
+                return Collections.singletonList(booksManager.getCache(Constants.CACHE_BOOKS_ID));
+            } else if (cacheNames.contains(Constants.CACHE_BOOKS_ISBN)) {
+                return Collections.singletonList(booksManager.getCache(Constants.CACHE_BOOKS_ISBN));
+            }
+
+            log.error("Unknown cache names specified: {}", String.join(", ", cacheNames));
+            return noOpCache;
         }
     }
-    */
 }

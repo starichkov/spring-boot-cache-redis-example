@@ -1,0 +1,9 @@
+DELETE http://localhost:8080/magazines/1
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+DELETE http://localhost:8080/magazines/2
+Accept: */*
+Cache-Control: no-cache

@@ -10,9 +10,6 @@ public final class Constants {
     public static final String CACHE_BOOKS_ISBN = "books_isbn";
     public static final String CACHE_MAGAZINES_ID = "magazines_id";
 
-    public static final String CACHE_MGR_BOOKS = "cache_manager_books";
-    public static final String CACHE_MGR_MAGAZINES = "cache_manager_magazines";
-
     private Constants() {
     }
 }

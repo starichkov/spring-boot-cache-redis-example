@@ -21,7 +21,7 @@ public class CacheEvictionManager {
         log.info("Cache: Book - evicting by id {} and isbn {}", id, isbn);
     }
 
-    @CacheEvict(cacheNames = Constants.CACHE_MAGAZINES_ID, key = "#id", cacheManager = Constants.CACHE_MGR_MAGAZINES)
+    @CacheEvict(cacheNames = Constants.CACHE_MAGAZINES_ID, key = "#id")
     public void evictMagazine(Long id) {
         log.info("Cache: Magazine - evicting by id {}", id);
     }
@@ -29,7 +29,7 @@ public class CacheEvictionManager {
     @Caching(evict = {
             @CacheEvict(cacheNames = Constants.CACHE_BOOKS_ID, allEntries = true),
             @CacheEvict(cacheNames = Constants.CACHE_BOOKS_ISBN, allEntries = true),
-            @CacheEvict(cacheNames = Constants.CACHE_MAGAZINES_ID, allEntries = true, cacheManager = Constants.CACHE_MGR_MAGAZINES)
+            @CacheEvict(cacheNames = Constants.CACHE_MAGAZINES_ID, allEntries = true)
     })
     public void evictAll() {
         log.info("Cache: evicting all entries");
