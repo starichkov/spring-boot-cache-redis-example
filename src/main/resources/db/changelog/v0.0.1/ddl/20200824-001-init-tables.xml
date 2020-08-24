@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="20200824-001-01-books-table" author="starichkov" dbms="mysql,h2">
+
+        <createTable tableName="books" schemaName="book_store">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="isbn" type="VARCHAR(13)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="books" schemaName="book_store"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20200824-001-02-magazines-table" author="starichkov" dbms="mysql,h2">
+
+        <createTable tableName="magazines" schemaName="book_store">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="issue" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="magazines" schemaName="book_store"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

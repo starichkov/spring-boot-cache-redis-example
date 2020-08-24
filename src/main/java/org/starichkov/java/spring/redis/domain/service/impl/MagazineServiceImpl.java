@@ -35,14 +35,14 @@ public class MagazineServiceImpl implements MagazineService {
     }
 
     @Override
-    public Magazine create(Magazine book) {
-        return repository.save(book);
+    public Magazine create(Magazine magazine) {
+        return repository.save(magazine);
     }
 
-    @CachePut(cacheNames = Constants.CACHE_MAGAZINES_ID, key = "#book.id", unless = "#result == null")
+    @CachePut(cacheNames = Constants.CACHE_MAGAZINES_ID, key = "#magazine.id", unless = "#result == null")
     @Override
-    public Magazine update(Magazine book) {
-        return repository.save(book);
+    public Magazine update(Magazine magazine) {
+        return repository.save(magazine);
     }
 
     @Override
