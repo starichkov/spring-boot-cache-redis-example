@@ -1,8 +1,6 @@
 package org.starichkov.java.spring.redis.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,13 +15,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "magazines", schema = "book_store")
-@Getter
-@Setter
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Data
 public class Magazine {
-
-    public Magazine() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

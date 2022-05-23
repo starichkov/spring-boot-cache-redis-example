@@ -86,13 +86,13 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
     }
 
     @Slf4j
-    private static class MultipleCacheResolver implements CacheResolver {
+    private static final class MultipleCacheResolver implements CacheResolver {
 
         private final CacheManager booksManager;
         private final CacheManager magazinesManager;
         private final Collection<Cache> noOpCache;
 
-        public MultipleCacheResolver(CacheManager booksManager, CacheManager magazinesManager) {
+        private MultipleCacheResolver(CacheManager booksManager, CacheManager magazinesManager) {
             this.booksManager = booksManager;
             this.magazinesManager = magazinesManager;
             this.noOpCache = Collections.singletonList(new NoOpCache("no_op_cache"));
